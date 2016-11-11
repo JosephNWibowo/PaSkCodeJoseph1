@@ -6,7 +6,11 @@ public class PSysView {
     PSysView() {
     }
 
+    // draw all particles in psm
     void draw(PSysModel psm, Graphics g) {
+    }
 
+    // dump information on all particles in psm
+    void dump(PSysModel psm, int lc) {
     }
 }

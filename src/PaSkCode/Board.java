@@ -32,8 +32,8 @@ public class Board extends JPanel implements ActionListener {
     private int frame;
     private int logCycle;
 
-    PSysModel pSystem;
-    PSysView pSysView;
+    PSysModel pSystem; // Particle system model
+    PSysView pSysView; // Particle system view
 
     public Board(int bw, int bh, ArrayList <String> pl) {
 
@@ -61,12 +61,17 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        System.out.println("Frame: " + frame);
+        if (frame % 30 == 0)
+            System.out.println("Frame: " + frame);
         frame++;
         // all simulation state change code should be wrapped here
         if (frame == logCycle) {
-            System.out.println("Frame " + logCycle);
-            System.out.println(radius + " " + px + " " + py + " " + velX + " " + velY);
+            pSysView.dump(pSystem, logCycle);
+            // This block replaced by pSysView.dump()
+	    /*
+	    System.out.println("Frame " + logCycle);
+	    System.out.println(radius + " " + px + " " + py + " " + velX + " " + velY);
+	    */
         }
         update();
         repaint();
@@ -83,34 +88,42 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void update() {
-        px += velX;
-        py += velY;
+        pSystem.update(bdWidth, bdHeight);
 
-        if (px >= bdWidth-radius && velX > 0) {
-            velX = -velX;
-        }
-        else if (px < radius && velX < 0) {
-            velX = -velX;
-        }
+        // This block replaced by pSystem.update()
+	/*
+	px += velX;
+	py += velY;
 
-        if (py >= bdHeight-radius && velY > 0) {
-            velY = -velY;
-        }
-        else if (py < radius && velY < 0) {
-            velY = -velY;
-        }
+	if (px >= bdWidth-radius && velX > 0) {
+	    velX = -velX;
+	}
+	else if (px < radius && velX < 0) {
+	    velX = -velX;
+	}
 
+	if (py >= bdHeight-radius && velY > 0) {
+	    velY = -velY;
+	}
+	else if (py < radius && velY < 0) {
+	    velY = -velY;
+	}
+	*/
 
     }
 
     private void doDrawing(Graphics g) {
+        pSysView.draw(pSystem, g);
 
+        // This block replaced by pSysView()
+	/*
         Graphics2D g2d = (Graphics2D) g;
-        //	g2d.setRenderingHints(
-        //	    new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,
-        //			       RenderingHints.VALUE_TEXT_ANTIALIAS_ON));
-        g2d.setColor(Color.RED);
-        g2d.fillOval(px-radius, py-radius, radius*2, radius*2);
+	//	g2d.setRenderingHints(
+	//	    new RenderingHints(RenderingHints.KEY_TEXT_ANTIALIASING,
+	//			       RenderingHints.VALUE_TEXT_ANTIALIAS_ON));
+	g2d.setColor(Color.RED);
+	g2d.fillOval(px-radius, py-radius, radius*2, radius*2);
+	*/
     }
 
     private class TAdapter extends KeyAdapter {
@@ -148,15 +161,19 @@ public class Board extends JPanel implements ActionListener {
 
             pSysView = new PSysView();
 
-            if (i==1) {
-                radius = rad;
-                px = npx;
-                py = npy;
-                velX = nvx;
-                velY = nvy;
-            }
-            System.out.println("Added: " + rad + " " + px + " " + py);
+            // This block has been replaced by pSystem.add()
+	    /*
+	    if (i==1) {
+		radius = rad;
+		px = npx;
+		py = npy;
+		velX = nvx;
+		velY = nvy;
+	    }
+	    System.out.println("Added: " + rad + " " + px + " " + py);
+	    */
         }
 
     }
+
 }
