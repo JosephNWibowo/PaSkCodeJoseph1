@@ -49,7 +49,7 @@ public class Board extends JPanel implements ActionListener {
 
         bdWidth = bw;
         bdHeight = bh;
-        px = bdWidth/2;
+        px = bdWidth/2;//todo : examine this since this putting the particle in center
         py = bdHeight/2;
         frame = 0;
 
