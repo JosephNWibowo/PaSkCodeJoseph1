@@ -31,57 +31,44 @@ public class PSysModel {
         return par.size();
     }
 
-    public int getCurrentParticleX(){
-        return par.get(index).getX();
+    public int getCurrentParticleX(int indexNo){
+        return par.get(indexNo).getX();
     }
-    public int getCurrentParticleY(){
-        return par.get(index).getY();
+    public int getCurrentParticleY(int indexNo){return par.get(indexNo).getY();}
+    public int getCurrentParticleRad(int indexNo){
+        return par.get(indexNo).getRadius();
     }
-    public int getCurrentParticleRad(){
-        return par.get(index).getRadius();
+    public int getCurrentParticleVelX(int indexNo){
+        return par.get(indexNo).getVelocityX();
     }
+    public int getCurrentParticleVelY(int indexNo){
+        return par.get(indexNo).getVelocityY();
+    }
+
     // update state of each particle in list
     void update(int bw, int bh) {
-        int tempX = par.get(index).getX();
-        int tempY = par.get(index).getY();
-        int tempVelX = par.get(index).getVelocityX();
-        int tempVelY = par.get(index).getVelocityY();
-        int tempRad = par.get(index).getRadius();
+        for (int i = 0; i < par.size(); i++) {
+            int tempX = par.get(i).getX();
+            int tempY = par.get(i).getY();
+            int tempVelX = par.get(i).getVelocityX();
+            int tempVelY = par.get(i).getVelocityY();
+            int tempRad = par.get(i).getRadius();
 
-       /* par.get(index).setX(tempX + tempVelX);
-        par.get(index).setY(tempY + tempVelY);
+            par.get(i).setX(tempX + tempVelX);
+            par.get(i).setY(tempY + tempVelY);
 
-        if (tempX >= bw - tempRad && tempVelX > 0) {
-            par.get(index).setX(-tempVelX);
-        } else if (tempX < tempRad && tempVelX < 0) {
-            par.get(index).setX(-tempVelX);
+             if (tempX >= bw - tempRad && tempVelX > 0) {
+                 par.get(i).setVelocityX(-tempVelX);
+             }else if (tempX < tempRad && tempVelX < 0) {
+                par.get(i).setVelocityX(-tempVelX);
+            }
+
+            if (tempY >= bh - tempRad && tempVelY > 0) {
+                par.get(i).setVelocityY(-tempVelY);
+             }else if (tempY < tempRad && tempVelY < 0) {
+                par.get(i).setVelocityY(-tempVelY);
+            }
+
         }
-
-        if (tempY >= bh - tempRad && tempVelY > 0) {
-            par.get(index).setY(-tempVelY);
-        } else if (tempY < tempRad && tempVelY < 0) {
-            par.get(index).setY(-tempVelY);
-        }*/
-
-
-
-
-        /*
-        px += velX;
-	py += velY;
-
-	if (px >= bdWidth-radius && velX > 0) {
-	    velX = -velX;
-	}
-	else if (px < radius && velX < 0) {
-	    velX = -velX;
-	}
-
-	if (py >= bdHeight-radius && velY > 0) {
-	    velY = -velY;
-	}
-	else if (py < radius && velY < 0) {
-	    velY = -velY;
-	}*/
     }
 }

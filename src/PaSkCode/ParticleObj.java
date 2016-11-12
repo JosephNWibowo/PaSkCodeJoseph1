@@ -23,14 +23,12 @@ public class ParticleObj {
     public int getX() {
         return x;
     }
-    public int getY() {
-        return radius;
-    }
+    public int getY() {return y;}
     public int getVelocityX() {
-        return radius;
+        return velocityX;
     }
     public int getVelocityY() {
-        return radius;
+        return velocityY;
     }
 
 
